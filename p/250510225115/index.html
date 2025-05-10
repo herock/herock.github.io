@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>试用 Dify 知识库后总结的几个要点 - Herock Post</title>
+<title>Cloudflare Workers 入门与实践 - Herock Post</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -16,19 +16,19 @@
 
 
 
-    <meta name="description" content="&amp;#x4ECA;&amp;#x5929;&amp;#x7A0D;&amp;#x5FAE;&amp;#x6DF1;&amp;#x5165;&amp;#x7684;&amp;#x8BD5;&amp;#x7528;&amp;#x4E86; Dify &amp;#x77E5;&amp;#x8BC6;&amp;#x5E93;&amp;#xFF0C;&amp;#x8BB0;&amp;#x5F55;&amp;#x4E00;&amp;#x4E9B;&amp;#x8981;&amp;#x70B9;&amp;#xFF1A; &amp;#x4E00;&amp;#x3001;API&amp;#x96C">
+    <meta name="description" content="&amp;#x8FD9;&amp;#x7BC7;&amp;#x7B14;&amp;#x8BB0;&amp;#x8BB0;&amp;#x5F55;&amp;#x4E00;&amp;#x4E0B; Cloudflare Workers &amp;#x7684;&amp;#x57FA;&amp;#x672C;&amp;#x6982;&amp;#x5FF5;&amp;#x3001;&amp;#x5F00;&amp;#x53D1;&amp;#x6D41;&amp;#x7A0B;&amp;#x3001;&amp;#x672C;&amp;#x5730;&amp;#x6D4B;&amp;#x8">
 <meta property="og:type" content="article">
-<meta property="og:title" content="试用 Dify 知识库后总结的几个要点">
-<meta property="og:url" content="https://www.herockpost.com/p/1053145340/index.html">
+<meta property="og:title" content="Cloudflare Workers 入门与实践">
+<meta property="og:url" content="https://www.herockpost.com/p/250510225115/index.html">
 <meta property="og:site_name" content="Herock Post">
-<meta property="og:description" content="&amp;#x4ECA;&amp;#x5929;&amp;#x7A0D;&amp;#x5FAE;&amp;#x6DF1;&amp;#x5165;&amp;#x7684;&amp;#x8BD5;&amp;#x7528;&amp;#x4E86; Dify &amp;#x77E5;&amp;#x8BC6;&amp;#x5E93;&amp;#xFF0C;&amp;#x8BB0;&amp;#x5F55;&amp;#x4E00;&amp;#x4E9B;&amp;#x8981;&amp;#x70B9;&amp;#xFF1A; &amp;#x4E00;&amp;#x3001;API&amp;#x96C">
+<meta property="og:description" content="&amp;#x8FD9;&amp;#x7BC7;&amp;#x7B14;&amp;#x8BB0;&amp;#x8BB0;&amp;#x5F55;&amp;#x4E00;&amp;#x4E0B; Cloudflare Workers &amp;#x7684;&amp;#x57FA;&amp;#x672C;&amp;#x6982;&amp;#x5FF5;&amp;#x3001;&amp;#x5F00;&amp;#x53D1;&amp;#x6D41;&amp;#x7A0B;&amp;#x3001;&amp;#x672C;&amp;#x5730;&amp;#x6D4B;&amp;#x8">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-02-28T10:15:50.000Z">
-<meta property="article:modified_time" content="2025-03-01T00:42:15.405Z">
+<meta property="article:published_time" content="2025-05-10T14:51:15.000Z">
+<meta property="article:modified_time" content="2025-05-10T15:13:41.573Z">
 <meta property="article:author" content="herock">
-<meta property="article:tag" content="知识库管理">
-<meta property="article:tag" content="Dify实践">
-<meta property="article:tag" content="AI应用开发">
+<meta property="article:tag" content="Cloudflare">
+<meta property="article:tag" content="Serverless">
+<meta property="article:tag" content="Workers">
 <meta name="twitter:card" content="summary">
 
 
@@ -122,14 +122,14 @@
     <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            试用 Dify 知识库后总结的几个要点
+            Cloudflare Workers 入门与实践
         
     </h1>
 
      
         <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
             <span class="column is-narrow">
-                2025年2月28日 星期五 18:15:50
+                2025年5月10日 星期六 22:51:15
             </span>
             
             
@@ -140,73 +140,32 @@
         <div class="article-entry is-size-6-mobile" itemprop="articleBody">
             
             
-            <html><head></head><body><p>&#x4ECA;&#x5929;&#x7A0D;&#x5FAE;&#x6DF1;&#x5165;&#x7684;&#x8BD5;&#x7528;&#x4E86; Dify &#x77E5;&#x8BC6;&#x5E93;&#xFF0C;&#x8BB0;&#x5F55;&#x4E00;&#x4E9B;&#x8981;&#x70B9;&#xFF1A;</p>
-<h2 id="&#x4E00;&#x3001;API&#x96C6;&#x6210;&#x4E0E;&#x529F;&#x80FD;&#x5165;&#x53E3;"><a href="#&#x4E00;&#x3001;API&#x96C6;&#x6210;&#x4E0E;&#x529F;&#x80FD;&#x5165;&#x53E3;" class="headerlink" title="&#x4E00;&#x3001;API&#x96C6;&#x6210;&#x4E0E;&#x529F;&#x80FD;&#x5165;&#x53E3;"></a>&#x4E00;&#x3001;API&#x96C6;&#x6210;&#x4E0E;&#x529F;&#x80FD;&#x5165;&#x53E3;</h2><p>Dify&#x77E5;&#x8BC6;&#x5E93;&#x63D0;&#x4F9B;&#x4FBF;&#x6377;&#x7684;API&#x63A5;&#x53E3;&#xFF08;&#x4F4D;&#x4E8E;&#x77E5;&#x8BC6;&#x5E93;&#x9996;&#x9875;&#x5DE6;&#x4E0A;&#x89D2;&#x5BFC;&#x822A;&#x680F;&#x53F3;&#x4FA7;&#xFF09;&#xFF0C;&#x652F;&#x6301;&#x5F00;&#x53D1;&#x8005;&#x901A;&#x8FC7;&#x81EA;&#x5B9A;&#x4E49;&#x5DE5;&#x5177;&#x63D0;&#x4EA4;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x8F7B;&#x677E;&#x6574;&#x5408;&#x81F3;&#x73B0;&#x6709;&#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x4E2D;&#x3002;</p>
-<h2 id="&#x4E8C;&#x3001;&#x5206;&#x6BB5;&#x7B56;&#x7565;&#x914D;&#x7F6E;&#x8981;&#x70B9;"><a href="#&#x4E8C;&#x3001;&#x5206;&#x6BB5;&#x7B56;&#x7565;&#x914D;&#x7F6E;&#x8981;&#x70B9;" class="headerlink" title="&#x4E8C;&#x3001;&#x5206;&#x6BB5;&#x7B56;&#x7565;&#x914D;&#x7F6E;&#x8981;&#x70B9;"></a>&#x4E8C;&#x3001;&#x5206;&#x6BB5;&#x7B56;&#x7565;&#x914D;&#x7F6E;&#x8981;&#x70B9;</h2><ol>
-<li><p><strong>Q&amp;A&#x6A21;&#x5F0F;&#x7279;&#x6027;</strong>  </p>
-<ul>
-<li>&#x8BE5;&#x6A21;&#x5F0F;&#x9700;&#x5728;&#x77E5;&#x8BC6;&#x5E93;&#x521B;&#x5EFA;&#x65F6;&#x9884;&#x5148;&#x9009;&#x62E9;&#xFF0C;&#x540E;&#x671F;&#x4E0D;&#x53EF;&#x53D8;&#x66F4;</li>
-<li>&#x867D;&#x5B58;&#x5728;&#x7075;&#x6D3B;&#x6027;&#x9650;&#x5236;&#xFF08;&#x65E0;&#x6CD5;&#x6309;&#x6587;&#x6863;&#x5DEE;&#x5F02;&#x5316;&#x8BBE;&#x7F6E;&#xFF09;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x751F;&#x6210;&#x6548;&#x679C;&#x663E;&#x8457;&#xFF0C;&#x7279;&#x522B;&#x9002;&#x7528;&#x4E8E;FAQ&#x7C7B;&#x77E5;&#x8BC6;&#x6574;&#x7406;</li>
-<li>&#x5EFA;&#x8BAE;&#xFF1A;&#x524D;&#x671F;&#x89C4;&#x5212;&#x65F6;&#x660E;&#x786E;&#x5185;&#x5BB9;&#x7C7B;&#x578B;&#xFF0C;&#x6279;&#x91CF;&#x5904;&#x7406;&#x540C;&#x7C7B;&#x6587;&#x6863;</li>
-</ul>
-</li>
-<li><p><strong>&#x53C2;&#x6570;&#x8C03;&#x4F18;&#x6307;&#x5357;</strong>  </p>
-<table>
-<thead>
-<tr>
-<th>&#x53C2;&#x6570;&#x9879;</th>
-<th>&#x63A8;&#x8350;&#x8303;&#x56F4;</th>
-<th>&#x5F71;&#x54CD;&#x5206;&#x6790;</th>
-<th>&#x8C03;&#x6574;&#x7B56;&#x7565;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&#x5206;&#x6BB5;&#x6700;&#x5927;&#x957F;&#x5EA6;</td>
-<td>200-600</td>
-<td>&#x8FC7;&#x957F;&#x5F15;&#x5165;&#x566A;&#x97F3;/&#x8FC7;&#x5C11;&#x4E22;&#x5931;&#x4E0A;&#x4E0B;&#x6587;</td>
-<td>&#x4F9D;&#x636E;&#x5185;&#x5BB9;&#x5BC6;&#x5EA6;&#x52A8;&#x6001;&#x8C03;&#x6574;</td>
-</tr>
-<tr>
-<td>&#x5206;&#x6BB5;&#x91CD;&#x53E0;&#x957F;&#x5EA6;</td>
-<td>50-150</td>
-<td>&#x4E0D;&#x8DB3;&#x5BFC;&#x81F4;&#x8BED;&#x4E49;&#x65AD;&#x88C2;/&#x5197;&#x4F59;</td>
-<td>&#x4FDD;&#x6301;10%-20%&#x5185;&#x5BB9;&#x91CD;&#x53E0;</td>
-</tr>
-</tbody></table>
-</li>
+            <html><head></head><body><p>&#x8FD9;&#x7BC7;&#x7B14;&#x8BB0;&#x8BB0;&#x5F55;&#x4E00;&#x4E0B; Cloudflare Workers &#x7684;&#x57FA;&#x672C;&#x6982;&#x5FF5;&#x3001;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x3001;&#x672C;&#x5730;&#x6D4B;&#x8BD5;&#x4EE5;&#x53CA;&#x90E8;&#x7F72;&#x65B9;&#x6CD5;&#x3002;</p>
+<h2 id="&#x4E00;&#x3001;&#x4EC0;&#x4E48;&#x662F;-Cloudflare-Workers&#xFF1F;"><a href="#&#x4E00;&#x3001;&#x4EC0;&#x4E48;&#x662F;-Cloudflare-Workers&#xFF1F;" class="headerlink" title="&#x4E00;&#x3001;&#x4EC0;&#x4E48;&#x662F; Cloudflare Workers&#xFF1F;"></a>&#x4E00;&#x3001;&#x4EC0;&#x4E48;&#x662F; Cloudflare Workers&#xFF1F;</h2><p>Cloudflare Workers &#x5141;&#x8BB8;&#x4F60;&#x5728; Cloudflare &#x7684;&#x5168;&#x7403;&#x7F51;&#x7EDC;&#x8FB9;&#x7F18;&#x8FD0;&#x884C; JavaScript&#x3001;Rust&#x3001;C &#x548C; C++ &#x4EE3;&#x7801;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x4F60;&#x7684;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x975E;&#x5E38;&#x9760;&#x8FD1;&#x4F60;&#x7684;&#x7528;&#x6237;&#xFF0C;&#x4ECE;&#x800C;&#x51CF;&#x5C11;&#x5EF6;&#x8FDF;&#x3002;</p>
+<h2 id="&#x4E8C;&#x3001;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"><a href="#&#x4E8C;&#x3001;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;" class="headerlink" title="&#x4E8C;&#x3001;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"></a>&#x4E8C;&#x3001;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</h2><ol>
+<li><strong>Cloudflare &#x8D26;&#x6237;</strong>&#xFF1A;&#x4F60;&#x9700;&#x8981;&#x4E00;&#x4E2A; Cloudflare &#x8D26;&#x6237;&#x3002;</li>
+<li><strong>Node.js &#x548C; npm</strong>&#xFF1A;&#x786E;&#x4FDD;&#x4F60;&#x5B89;&#x88C5;&#x4E86; Node.js (&#x901A;&#x5E38;&#x4F1A;&#x9644;&#x5E26; npm)&#x3002;</li>
+<li><strong>Wrangler CLI</strong>&#xFF1A;Cloudflare Workers &#x7684;&#x5B98;&#x65B9;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x3002;<br><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g wrangler</span><br><span class="line"><span class="hljs-comment"># &#x6216;&#x8005;&#x4F7F;&#x7528; yarn</span></span><br><span class="line"><span class="hljs-comment"># yarn global add wrangler</span></span><br></pre></td></tr></tbody></table></figure><br>&#x767B;&#x5F55; Wrangler:<br><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wrangler login</span><br></pre></td></tr></tbody></table></figure></li>
 </ol>
-<h2 id="&#x4E09;&#x3001;&#x6548;&#x679C;&#x9A8C;&#x8BC1;&#x4E0E;&#x53EC;&#x56DE;&#x6D4B;&#x8BD5;"><a href="#&#x4E09;&#x3001;&#x6548;&#x679C;&#x9A8C;&#x8BC1;&#x4E0E;&#x53EC;&#x56DE;&#x6D4B;&#x8BD5;" class="headerlink" title="&#x4E09;&#x3001;&#x6548;&#x679C;&#x9A8C;&#x8BC1;&#x4E0E;&#x53EC;&#x56DE;&#x6D4B;&#x8BD5;"></a>&#x4E09;&#x3001;&#x6548;&#x679C;&#x9A8C;&#x8BC1;&#x4E0E;&#x53EC;&#x56DE;&#x6D4B;&#x8BD5;</h2><ol>
-<li><p>&#x6587;&#x6863;&#x5904;&#x7406;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x52A1;&#x5FC5;&#x901A;&#x8FC7;&#x201D;&#x53EC;&#x56DE;&#x6D4B;&#x8BD5;&#x201D;&#x529F;&#x80FD;&#x9A8C;&#x8BC1;&#xFF1A;</p>
-<ul>
-<li>&#x5728;&#x201D;&#x6E90;&#x6587;&#x672C;&#x201D;&#x8F93;&#x5165;&#x771F;&#x5B9E;&#x7528;&#x6237;&#x53EF;&#x80FD;&#x63D0;&#x95EE;&#x7684;&#x81EA;&#x7136;&#x8BED;&#x8A00;</li>
-<li>&#x89C2;&#x5BDF;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x7684;&#x5173;&#x8054;&#x6027;&#x4E0E;&#x5B8C;&#x6574;&#x6027;</li>
-<li>&#x5178;&#x578B;&#x6848;&#x4F8B;&#x6D4B;&#x8BD5;&#x5EFA;&#x8BAE;&#x8986;&#x76D6;&#x9AD8;&#x9891;&#x67E5;&#x8BE2;&#x573A;&#x666F;</li>
-</ul>
+<h2 id="&#x4E09;&#x3001;&#x521B;&#x5EFA;&#x548C;&#x5F00;&#x53D1;-Worker"><a href="#&#x4E09;&#x3001;&#x521B;&#x5EFA;&#x548C;&#x5F00;&#x53D1;-Worker" class="headerlink" title="&#x4E09;&#x3001;&#x521B;&#x5EFA;&#x548C;&#x5F00;&#x53D1; Worker"></a>&#x4E09;&#x3001;&#x521B;&#x5EFA;&#x548C;&#x5F00;&#x53D1; Worker</h2><ol>
+<li><p><strong>&#x521B;&#x5EFA;&#x9879;&#x76EE;</strong>:<br>&#x4F7F;&#x7528; Wrangler CLI &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684; Worker &#x9879;&#x76EE;&#xFF1A;<br></p><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wrangler init my-worker</span><br><span class="line"><span class="hljs-built_in">cd</span> my-worker</span><br></pre></td></tr></tbody></table></figure><br>&#x8FD9;&#x5C06;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x57FA;&#x672C;&#x7ED3;&#x6784;&#x7684;&#x9879;&#x76EE;&#x3002;<p></p>
 </li>
-<li><p><strong>&#x8FED;&#x4EE3;&#x4F18;&#x5316;&#x6D41;&#x7A0B;</strong><br>&#x6D4B;&#x8BD5;&#x6548;&#x679C;&#x4E0D;&#x4F73;&#x65F6;&#xFF0C;&#x6309;&#x4EE5;&#x4E0B;&#x987A;&#x5E8F;&#x8C03;&#x6574;&#xFF1A;<br></p><figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x8C03;&#x6574;&#x5206;&#x6BB5;&#x53C2;&#x6570; &#x2192; &#x4F18;&#x5316;&#x68C0;&#x7D22;&#x53C2;&#x6570; &#x2192; &#x6539;&#x8FDB;&#x77E5;&#x8BC6;&#x5185;&#x5BB9;&#x8D28;&#x91CF;</span><br></pre></td></tr></tbody></table></figure><p></p>
+<li><p><strong>&#x7F16;&#x5199;&#x4EE3;&#x7801; (<code>src/index.js</code> &#x6216; <code>src/index.ts</code>)</strong>:<br>&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684; &#x201C;Hello World&#x201D; Worker &#x53EF;&#x80FD;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// src/index.js</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {</span><br><span class="line">  <span class="hljs-keyword">async</span> fetch(request, env, ctx) {</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Response(<span class="hljs-string">&apos;Hello World!&apos;</span>);</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure><p></p>
 </li>
-</ol>
-<h2 id="&#x56DB;&#x3001;&#x9AD8;&#x7EA7;&#x68C0;&#x7D22;&#x53C2;&#x6570;&#x89E3;&#x6790;"><a href="#&#x56DB;&#x3001;&#x9AD8;&#x7EA7;&#x68C0;&#x7D22;&#x53C2;&#x6570;&#x89E3;&#x6790;" class="headerlink" title="&#x56DB;&#x3001;&#x9AD8;&#x7EA7;&#x68C0;&#x7D22;&#x53C2;&#x6570;&#x89E3;&#x6790;"></a>&#x56DB;&#x3001;&#x9AD8;&#x7EA7;&#x68C0;&#x7D22;&#x53C2;&#x6570;&#x89E3;&#x6790;</h2><ol>
-<li><p><strong>TopK&#x52A8;&#x6001;&#x8C03;&#x6574;&#x673A;&#x5236;</strong></p>
+<li><p><strong>&#x672C;&#x5730;&#x6D4B;&#x8BD5;</strong>:<br>&#x4F7F;&#x7528; Wrangler CLI &#x5728;&#x672C;&#x5730;&#x8FD0;&#x884C;&#x548C;&#x6D4B;&#x8BD5;&#x4F60;&#x7684; Worker&#xFF1A;<br></p><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wrangler dev</span><br></pre></td></tr></tbody></table></figure><br>&#x8FD9;&#x901A;&#x5E38;&#x4F1A;&#x5728; <code>http://localhost:8787</code> &#x542F;&#x52A8;&#x4E00;&#x4E2A;&#x672C;&#x5730;&#x670D;&#x52A1;&#x5668;&#x3002;<p></p>
 <ul>
-<li>&#x5B9A;&#x4E49;&#xFF1A;&#x8FD4;&#x56DE;&#x6700;&#x76F8;&#x5173;&#x7684;&#x524D;K&#x4E2A;&#x6587;&#x6863;&#x5757;&#xFF08;&#x9ED8;&#x8BA4;K=3&#xFF09;</li>
-<li>&#x7CFB;&#x7EDF;&#x6839;&#x636E;&#x6A21;&#x578B;&#x4E0A;&#x4E0B;&#x6587;&#x7A97;&#x53E3;&#x81EA;&#x52A8;&#x4F18;&#x5316;&#x7247;&#x6BB5;&#x6570;&#x91CF;</li>
-<li>&#x8C03;&#x53C2;&#x539F;&#x5219;&#xFF1A;&#x8D44;&#x6E90;&#x5145;&#x8DB3;&#x65F6;&#x9002;&#x5F53;&#x63D0;&#x9AD8;&#x6570;&#x503C;&#x589E;&#x5F3A;&#x53EC;&#x56DE;&#x7387;</li>
-</ul>
-</li>
-<li><p><strong>Score&#x9608;&#x503C;&#x63A7;&#x5236;</strong></p>
-<ul>
-<li>&#x57FA;&#x4E8E;&#x4F59;&#x5F26;&#x76F8;&#x4F3C;&#x5EA6;&#x7684;&#x8FC7;&#x6EE4;&#x673A;&#x5236;&#xFF08;&#x9ED8;&#x8BA4;&#x9608;&#x503C;0.5&#xFF09;</li>
-<li>&#x6570;&#x503C;&#x4E0E;&#x53EC;&#x56DE;&#x7CBE;&#x5EA6;&#x5448;&#x6B63;&#x76F8;&#x5173;&#xFF0C;&#x4E0E;&#x6570;&#x91CF;&#x5448;&#x8D1F;&#x76F8;&#x5173;</li>
-<li>&#x63A8;&#x8350;&#x7B56;&#x7565;&#xFF1A;&#x521D;&#x671F;&#x8BBE;&#x4E3A;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x9010;&#x6B65;&#x63D0;&#x5347;&#x81F3;&#x8D28;&#x91CF;&#x74F6;&#x9888;</li>
+<li>&#x5BF9;&#x4E8E;&#x66F4;&#x590D;&#x6742;&#x7684;&#x8C03;&#x8BD5;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x8BBF;&#x95EE;&#x672C;&#x5730; Worker &#x65F6;&#x4F7F;&#x7528;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x5F00;&#x53D1;&#x8005;&#x5DE5;&#x5177; (Network, Console)&#x3002;</li>
 </ul>
 </li>
 </ol>
-<p><strong>&#x53C2;&#x8003;&#x6587;&#x6863;</strong>&#xFF1A;  </p>
-<ul>
-<li><a href="https://docs.dify.ai/zh-hans/guides/knowledge-base" target="_blank" rel="noopener">Dify&#x5B98;&#x65B9;&#x77E5;&#x8BC6;&#x5E93;&#x6587;&#x6863;</a>  </li>
-<li><a href="https://docs.dify.ai/zh-hans/learn-more/use-cases/integrate-deepseek-to-build-an-ai-app" target="_blank" rel="noopener">DeepSeek&#x4E0E;Dify&#x96C6;&#x6210;&#x5F00;&#x53D1;&#x6307;&#x5357;</a></li>
-</ul>
+<h2 id="&#x56DB;&#x3001;&#x90E8;&#x7F72;-Worker"><a href="#&#x56DB;&#x3001;&#x90E8;&#x7F72;-Worker" class="headerlink" title="&#x56DB;&#x3001;&#x90E8;&#x7F72; Worker"></a>&#x56DB;&#x3001;&#x90E8;&#x7F72; Worker</h2><ol>
+<li><p><strong>&#x90E8;&#x7F72;&#x5230; <code>.workers.dev</code> &#x5B50;&#x57DF;&#x540D;</strong>:<br></p><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wrangler deploy</span><br></pre></td></tr></tbody></table></figure><br>&#x9996;&#x6B21;&#x90E8;&#x7F72;&#x65F6;&#xFF0C;Wrangler &#x53EF;&#x80FD;&#x4F1A;&#x63D0;&#x793A;&#x4F60;&#x4E00;&#x4E9B;&#x4FE1;&#x606F;&#x3002;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x4F60;&#x7684; Worker &#x4F1A;&#x90E8;&#x7F72;&#x5230;&#x4E00;&#x4E2A; <code>your-worker-name.your-subdomain.workers.dev</code> &#x7684; URL&#x3002;<p></p>
+</li>
+<li><p><strong>&#x90E8;&#x7F72;&#x5230;&#x81EA;&#x5B9A;&#x4E49;&#x57DF;&#x540D;</strong>:<br>&#x5982;&#x679C;&#x4F60;&#x60F3;&#x5C06; Worker &#x90E8;&#x7F72;&#x5230;&#x4F60;&#x81EA;&#x5DF1;&#x7684;&#x57DF;&#x540D; (&#x4F8B;&#x5982; <code>api.example.com</code>)&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x5728; Cloudflare Dashboard &#x4E2D;&#x914D;&#x7F6E;&#x76F8;&#x5E94;&#x7684; DNS &#x8BB0;&#x5F55;&#x548C;&#x8DEF;&#x7531;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x518D;&#x6B21;&#x8FD0;&#x884C; <code>wrangler deploy</code>&#x3002;&#x8BF7;&#x67E5;&#x9605;&#x6700;&#x65B0;&#x7684; Cloudflare Workers &#x6587;&#x6863;&#x4EE5;&#x83B7;&#x53D6;&#x51C6;&#x786E;&#x7684;&#x914D;&#x7F6E;&#x65B9;&#x6CD5;&#x3002;</p>
+</li>
+</ol>
+<h2 id="&#x4E94;&#x3001;&#x603B;&#x7ED3;"><a href="#&#x4E94;&#x3001;&#x603B;&#x7ED3;" class="headerlink" title="&#x4E94;&#x3001;&#x603B;&#x7ED3;"></a>&#x4E94;&#x3001;&#x603B;&#x7ED3;</h2><p>Cloudflare Workers &#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x79CD;&#x5F3A;&#x5927;&#x4E14;&#x9AD8;&#x6548;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x6784;&#x5EFA;&#x548C;&#x90E8;&#x7F72;&#x65E0;&#x670D;&#x52A1;&#x5668;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x3002;&#x901A;&#x8FC7; Wrangler CLI&#xFF0C;&#x5F00;&#x53D1;&#x3001;&#x6D4B;&#x8BD5;&#x548C;&#x90E8;&#x7F72;&#x6D41;&#x7A0B;&#x90FD;&#x53D8;&#x5F97;&#x76F8;&#x5BF9;&#x7B80;&#x5355;&#x3002;</p>
 </body></html>
         </div>
         
